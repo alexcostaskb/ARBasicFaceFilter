@@ -1,0 +1,2 @@
+C:\Curso videojuegos\GitHub\ARBasicFaceFilter\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Curso videojuegos\GitHub\ARBasicFaceFilter\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt
