@@ -95,7 +95,7 @@ public class GoalManager : MonoBehaviour
 
     [Tooltip("List of Goals/Steps to complete as part of the user onboarding.")]
     [SerializeField]
-    List<Step> m_StepList = new List<Step>();
+    private List<Step> m_StepList = new List<Step>();
 
     /// <summary>
     /// List of Goals/Steps to complete as part of the user onboarding.
@@ -108,7 +108,7 @@ public class GoalManager : MonoBehaviour
 
     [Tooltip("Object Spawner used to detect whether the spawning goal has been achieved.")]
     [SerializeField]
-    ObjectSpawner m_ObjectSpawner;
+    private ObjectSpawner m_ObjectSpawner;
 
     /// <summary>
     /// Object Spawner used to detect whether the spawning goal has been achieved.
@@ -121,7 +121,7 @@ public class GoalManager : MonoBehaviour
 
     [Tooltip("The greeting prompt Game Object to show when onboarding begins.")]
     [SerializeField]
-    GameObject m_GreetingPrompt;
+    private GameObject m_GreetingPrompt;
 
     /// <summary>
     /// The greeting prompt Game Object to show when onboarding begins.
@@ -134,7 +134,7 @@ public class GoalManager : MonoBehaviour
 
     [Tooltip("The Options Button to enable once the greeting prompt is dismissed.")]
     [SerializeField]
-    GameObject m_OptionsButton;
+    private GameObject m_OptionsButton;
 
     /// <summary>
     /// The Options Button to enable once the greeting prompt is dismissed.
@@ -147,7 +147,7 @@ public class GoalManager : MonoBehaviour
 
     [Tooltip("The Create Button to enable once the greeting prompt is dismissed.")]
     [SerializeField]
-    GameObject m_CreateButton;
+    private GameObject m_CreateButton;
 
     /// <summary>
     /// The Create Button to enable once the greeting prompt is dismissed.
@@ -160,7 +160,7 @@ public class GoalManager : MonoBehaviour
 
     [Tooltip("The AR Template Menu Manager object to enable once the greeting prompt is dismissed.")]
     [SerializeField]
-    ARTemplateMenuManager m_MenuManager;
+    private ARTemplateMenuManager m_MenuManager;
 
     /// <summary>
     /// The AR Template Menu Manager object to enable once the greeting prompt is dismissed.
@@ -171,16 +171,16 @@ public class GoalManager : MonoBehaviour
         set => m_MenuManager = value;
     }
 
-    const int k_NumberOfSurfacesTappedToCompleteGoal = 1;
+    private const int k_NumberOfSurfacesTappedToCompleteGoal = 1;
 
-    Queue<Goal> m_OnboardingGoals;
-    Coroutine m_CurrentCoroutine;
-    Goal m_CurrentGoal;
-    bool m_AllGoalsFinished;
-    int m_SurfacesTapped;
-    int m_CurrentGoalIndex = 0;
+    private Queue<Goal> m_OnboardingGoals;
+    private Coroutine m_CurrentCoroutine;
+    private Goal m_CurrentGoal;
+    private bool m_AllGoalsFinished;
+    private int m_SurfacesTapped;
+    private int m_CurrentGoalIndex = 0;
 
-    void Update()
+    private void Update()
     {
         if (Pointer.current != null && Pointer.current.press.wasPressedThisFrame && !m_AllGoalsFinished && (m_CurrentGoal.CurrentGoal == OnboardingGoals.FindSurfaces || m_CurrentGoal.CurrentGoal == OnboardingGoals.Hints || m_CurrentGoal.CurrentGoal == OnboardingGoals.Scale))
         {
@@ -192,7 +192,7 @@ public class GoalManager : MonoBehaviour
         }
     }
 
-    void CompleteGoal()
+    private void CompleteGoal()
     {
         if (m_CurrentGoal.CurrentGoal == OnboardingGoals.TapSurface)
             m_ObjectSpawner.objectSpawned -= OnObjectSpawned;
@@ -215,7 +215,7 @@ public class GoalManager : MonoBehaviour
         PreprocessGoal();
     }
 
-    void PreprocessGoal()
+    private void PreprocessGoal()
     {
         if (m_CurrentGoal.CurrentGoal == OnboardingGoals.FindSurfaces)
         {
@@ -261,7 +261,7 @@ public class GoalManager : MonoBehaviour
         CompleteGoal();
     }
 
-    void OnObjectSpawned(GameObject spawnedObject)
+    private void OnObjectSpawned(GameObject spawnedObject)
     {
         m_SurfacesTapped++;
         if (m_CurrentGoal.CurrentGoal == OnboardingGoals.TapSurface && m_SurfacesTapped >= k_NumberOfSurfacesTappedToCompleteGoal)
@@ -321,6 +321,5 @@ public class GoalManager : MonoBehaviour
                 m_StepList[i].stepObject.SetActive(false);
             }
         }
-
     }
 }
